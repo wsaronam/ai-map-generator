@@ -1,0 +1,10 @@
+### Test ping
+GET http://localhost:5000/ping
+
+### Test map generation
+POST http://localhost:5000/generate-map
+Content-Type: application/json
+
+{
+  "theme": "haunted mansion"
+}
