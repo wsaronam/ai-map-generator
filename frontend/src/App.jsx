@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import axios from "axios"
 import './App.css'
 
+import Header from './components/Header'
+import ThemeInput from './components/ThemeInput'
+
 
 
 
@@ -17,9 +20,9 @@ function App() {
   
 
   return (
-    <div>
-      Test
-      Backend status: {status}
+    <div className="app">
+      <Header />
+      <ThemeInput />
     </div>
   )
 }
