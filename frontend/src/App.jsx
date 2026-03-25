@@ -4,14 +4,16 @@ import './App.css'
 
 import Header from './components/Header'
 import ThemeInput from './components/ThemeInput'
+import DungeonMap from './components/DungeonMap'
 
 
 
 
 function App() {
   const [status, setStatus] = useState("none yet");
-  const [theme, setTheme] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [theme, setTheme] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [mapData, setMapData] = useState(null);
 
 
   useEffect(() => {
@@ -22,12 +24,27 @@ function App() {
 
 
   async function generateMap() {
-    const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-    console.log("Waiting...");
+    if (!theme.trim()) {
+      return;
+    }
+
     setLoading(true);
-    await wait(5000);
-    console.log("5 seconds have passed!");
-    setLoading(false);
+    setMapData(null);
+
+    try {
+      const res = await axios.post('http://localhost:5000/generate-map', {theme});
+      const parsed = parseMap(res.data.map);
+      if (!parsed) {
+        throw new Error('Invalid map data');
+      }
+      setMapData(parsed);
+    }
+    catch {
+      console.log('Error generating map');
+    }
+    finally {
+      setLoading(false);
+    }
   };
   
 
@@ -40,6 +57,11 @@ function App() {
         onGenerate={generateMap}
         loading={loading}
       />
+      {mapData && (
+        <DungeonMap 
+          mapData={mapData}
+        />
+      )}
     </div>
   )
 }
