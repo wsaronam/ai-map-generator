@@ -12,8 +12,10 @@ import DungeonMap from './components/DungeonMap'
 function App() {
   const [status, setStatus] = useState("none yet");
   const [theme, setTheme] = useState('');
-  const [loading, setLoading] = useState(false);
   const [mapData, setMapData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState (null);
+  
 
 
   useEffect(() => {
@@ -29,7 +31,9 @@ function App() {
     }
 
     setLoading(true);
+    // setMapData(1);
     setMapData(null);
+    setError(null);
 
     try {
       const res = await axios.post('http://localhost:5000/generate-map', {theme});
@@ -40,7 +44,7 @@ function App() {
       setMapData(parsed);
     }
     catch {
-      console.log('Error generating map');
+      setError('Error generating map.  Please try again.');
     }
     finally {
       setLoading(false);
@@ -57,6 +61,7 @@ function App() {
         onGenerate={generateMap}
         loading={loading}
       />
+      {error && <p className='error-message'>{error}</p>}
       {mapData && (
         <DungeonMap 
           mapData={mapData}
