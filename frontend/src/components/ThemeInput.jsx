@@ -16,7 +16,7 @@ export default function ThemeInput({
                 className='theme-input'
                 value={theme}
                 onChange={e => setTheme(e.target.value)}
-                onKeyDown={(e => e.key === 'Enter' && onGenerate())}
+                onKeyDown={e => e.key === 'Enter' && onGenerate()}
                 placeholder='e.g. haunted mansion, ice cavern, volcanic swamps...'
             />
             <button

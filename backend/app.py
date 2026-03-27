@@ -36,7 +36,8 @@ def generate_map():
             - description: a short description of the room
             - connections: array of rooms (ids) that this room connects to
             - type: what type of room this is (please select from this list [entrance, boss, treasure, trap, rest, combat])
-     """
+    Please return ONLY a raw JSON object with no markdown, no code fences, no backticks, and no extra text.
+    """
     
     response = client.chat.completions.create(
         model='llama-3.3-70b-versatile',

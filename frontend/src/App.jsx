@@ -5,6 +5,7 @@ import './App.css'
 import Header from './components/Header'
 import ThemeInput from './components/ThemeInput'
 import DungeonMap from './components/DungeonMap'
+import { parseMap } from './utils/MapHelpers'
 
 
 
@@ -31,19 +32,22 @@ function App() {
     }
 
     setLoading(true);
-    // setMapData(1);
     setMapData(null);
     setError(null);
 
     try {
       const res = await axios.post('http://localhost:5000/generate-map', {theme});
+      console.log('raw: ' + res.data);
+      console.log("raw read: " + JSON.stringify(res.data))
       const parsed = parseMap(res.data.map);
+      console.log('parsed: ' + parsed);
       if (!parsed) {
         throw new Error('Invalid map data');
       }
       setMapData(parsed);
     }
-    catch {
+    catch (err) {
+      console.log("error caught: " + err.message)
       setError('Error generating map.  Please try again.');
     }
     finally {
