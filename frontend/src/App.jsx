@@ -16,6 +16,7 @@ function App() {
   const [mapData, setMapData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState (null);
+  const [selectedRoom, setSelectedRoom] = useState(null);
   
 
 
@@ -37,10 +38,8 @@ function App() {
 
     try {
       const res = await axios.post('http://localhost:5000/generate-map', {theme});
-      console.log('raw: ' + res.data);
-      console.log("raw read: " + JSON.stringify(res.data))
       const parsed = parseMap(res.data.map);
-      console.log('parsed: ' + parsed);
+      console.log('parsed: ' + JSON.stringify(parsed));
       if (!parsed) {
         throw new Error('Invalid map data');
       }
@@ -54,7 +53,18 @@ function App() {
       setLoading(false);
     }
   };
+
+
+  function handleRoomClick(room, pos) {
+    if (selectedRoom?.id === room.id) {
+      setSelectedRoom(null);
+    }
+    else {
+      setSelectedRoom(room);
+    }
+  }
   
+
 
   return (
     <div className="app">
@@ -69,6 +79,7 @@ function App() {
       {mapData && (
         <DungeonMap 
           mapData={mapData}
+          selectedRoom={selectedRoom}
         />
       )}
     </div>

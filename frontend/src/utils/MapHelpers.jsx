@@ -15,9 +15,10 @@ export const MAP_CENTER_X = 400;
 export const MAP_CENTER_Y = 300;
 
 
-
 // Room nodes
 export const ROOM_RADIUS = 28
+
+
 
 
 export function parseMap(raw) {
@@ -31,4 +32,16 @@ export function parseMap(raw) {
     catch (err) {
         return null;
     }
+}
+
+// WIP
+export function getRoomPositions(rooms) {
+    const positions = {};
+    rooms.forEach((room, i) => {
+        positions[room.id] = {
+            x: MAP_CENTER_X,
+            y: MAP_CENTER_Y
+        }
+    })
+    return positions;
 }
