@@ -37,10 +37,15 @@ export function parseMap(raw) {
 // WIP
 export function getRoomPositions(rooms) {
     const positions = {};
+    const cols = 3;
+    const cellW = MAP_WIDTH / cols;
+    const cellH = MAP_HEIGHT / 2;
     rooms.forEach((room, i) => {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
         positions[room.id] = {
-            x: MAP_CENTER_X,
-            y: MAP_CENTER_Y
+            x: cellW * col + cellW / 2,
+            y: cellH * row + cellH / 2
         }
     })
     return positions;

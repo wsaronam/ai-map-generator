@@ -14,17 +14,24 @@ import '../styles/DungeonMap.css';
 
 function RoomNode({room, pos}) {
     const color = ROOM_COLORS[room.type]
+    const w = 90;
+    const h = 52;
 
     return (
         <g>
-            <circle
-                cx={pos.x} cy={pos.y} r={ROOM_RADIUS}
+            <rect
+                x={pos.x - w / 2} y={pos.y - h / 2}
+                width={w} height={h}
+                rx='8'
                 fill={color}
+                stroke={color} strokeWidth='2'
             />
-            <text x={pos.x} y={pos.y} textAnchor='middle'>
+            <text x={pos.x} y={pos.y - 6} textAnchor='middle'
+             fill='color' fontSize='10' fontWeight='bold'>
                 {room.type.toUpperCase()}
             </text>
-            <text x={pos.x} y={pos.y} textAnchor='middle'>
+            <text x={pos.x} y={pos.y + 8} textAnchor='middle'
+             fill='color' fontSize='9'>
                 {room.name}
             </text>
         </g>
