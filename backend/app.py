@@ -28,6 +28,9 @@ def generate_map():
 
     prompt=f"""
     Please generate a dungeon map description for a {theme} setting.
+    Please be creative with the room connections by avoiding lienar or predictable patterns.
+    For example, you can have rooms be dead ends or some kind of being like a hub (THIS IS NOT A ROOM TYPE) with many connections.
+    The idea is for the overall layout to feel like a real dungeon and not just a loop or straight path.
     Please return a JSON object with the following:
         - title: name of the dungeon
         - rooms: array of 6 rooms, each with:

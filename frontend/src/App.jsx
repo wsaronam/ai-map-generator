@@ -35,6 +35,7 @@ function App() {
     setLoading(true);
     setMapData(null);
     setError(null);
+    setSelectedRoom(null);
 
     try {
       const res = await axios.post('http://localhost:5000/generate-map', {theme});
@@ -80,6 +81,7 @@ function App() {
         <DungeonMap 
           mapData={mapData}
           selectedRoom={selectedRoom}
+          onRoomClick={handleRoomClick}
         />
       )}
     </div>

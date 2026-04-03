@@ -19,6 +19,12 @@ export const MAP_CENTER_Y = 300;
 export const ROOM_RADIUS = 28
 
 
+// Connections
+export const CONNECTION_STROKE = '#ffffff'
+export const CONNECTION_WIDTH = 2
+export const CONNECTION_DASH = '6 3'
+
+
 
 
 export function parseMap(raw) {
