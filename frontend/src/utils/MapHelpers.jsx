@@ -16,13 +16,18 @@ export const MAP_CENTER_Y = 300;
 
 
 // Room nodes
-export const ROOM_RADIUS = 28
+export const ROOM_RADIUS = 28;
 
 
 // Connections
-export const CONNECTION_STROKE = '#ffffff'
-export const CONNECTION_WIDTH = 2
-export const CONNECTION_DASH = '6 3'
+export const CONNECTION_STROKE = '#ffffff';
+export const CONNECTION_WIDTH = 2;
+export const CONNECTION_DASH = '6 3';
+
+
+// Tooltip
+export const TOOLTIP_WIDTH = 200;
+export const TOOLTIP_HEIGHT = 350;
 
 
 

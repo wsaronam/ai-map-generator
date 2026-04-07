@@ -17,6 +17,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState (null);
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const [tooltip, setTooltip] = useState(null);
   
 
 
@@ -36,6 +37,7 @@ function App() {
     setMapData(null);
     setError(null);
     setSelectedRoom(null);
+    setTooltip(null);
 
     try {
       const res = await axios.post('http://localhost:5000/generate-map', {theme});
@@ -59,9 +61,11 @@ function App() {
   function handleRoomClick(room, pos) {
     if (selectedRoom?.id === room.id) {
       setSelectedRoom(null);
+      setTooltip(null);
     }
     else {
       setSelectedRoom(room);
+      setTooltip({ room, x: pos.x, y: pos.y })
     }
   }
   
@@ -82,6 +86,7 @@ function App() {
           mapData={mapData}
           selectedRoom={selectedRoom}
           onRoomClick={handleRoomClick}
+          tooltip={tooltip}
         />
       )}
     </div>

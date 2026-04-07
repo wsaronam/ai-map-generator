@@ -6,6 +6,8 @@ import {
     CONNECTION_STROKE,
     CONNECTION_WIDTH,
     CONNECTION_DASH,
+    TOOLTIP_WIDTH,
+    TOOLTIP_HEIGHT,
     getRoomPositions
 } from '../utils/MapHelpers.jsx';
 import Legend from './Legend.jsx';
@@ -80,16 +82,33 @@ function ConnectionLines({rooms, positions}) {
 }
 
 
-function Tooltip() {
+function Tooltip({tooltip}) {
+    if (!tooltip) return null;
+
+
     return (
         <g>
-            <rect />
+            <rect
+                x={tooltip.x} y={tooltip.y}
+                width={TOOLTIP_WIDTH}
+                height={TOOLTIP_HEIGHT}
+                rx='8'
+                fill="#151f3a"
+                stroke="#ffd900"
+                strokeWidth="1"
+            />
+            <text x={tooltip.x + 10} y={tooltip.y + 18} fill="#ffd900" fontSize='11' fontWeight='bold'>
+                {tooltip.room.name}
+            </text>
+            <text x={tooltip.x + 10} y={tooltip.y + 34} fill='#a5a5a5' fontSize='9'>
+                {tooltip.room.description}
+            </text>
         </g>
     )
 }
 
 
-export default function DungeonMap({mapData, selectedRoom, onRoomClick}) {
+export default function DungeonMap({mapData, selectedRoom, onRoomClick, tooltip}) {
     const positions = getRoomPositions(mapData.rooms);
 
 
@@ -112,6 +131,7 @@ export default function DungeonMap({mapData, selectedRoom, onRoomClick}) {
                         isSelected={selectedRoom?.id === room.id}
                     />
                 ))}
+                <Tooltip tooltip={tooltip} />
             </svg>
             <Legend />
         </div>
