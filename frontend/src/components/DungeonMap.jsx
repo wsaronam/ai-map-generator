@@ -8,6 +8,7 @@ import {
     CONNECTION_DASH,
     TOOLTIP_WIDTH,
     TOOLTIP_HEIGHT,
+    TOOLTIP_WORDS_PER_LINE,
     getRoomPositions
 } from '../utils/MapHelpers.jsx';
 import Legend from './Legend.jsx';
@@ -84,6 +85,13 @@ function ConnectionLines({rooms, positions}) {
 
 function Tooltip({tooltip}) {
     if (!tooltip) return null;
+    const words = tooltip.room.description.split(' ');
+    const line1 = words.slice(0, TOOLTIP_WORDS_PER_LINE).join(' ');
+    const line2 = words.slice(TOOLTIP_WORDS_PER_LINE, TOOLTIP_WORDS_PER_LINE * 2).join(' ');
+    const line3 = words.slice(TOOLTIP_WORDS_PER_LINE * 2).join(' ');
+    console.log(line1);
+    console.log(line2);
+    console.log(line3);
 
 
     return (
@@ -91,7 +99,7 @@ function Tooltip({tooltip}) {
             <rect
                 x={tooltip.x} y={tooltip.y}
                 width={TOOLTIP_WIDTH}
-                height={TOOLTIP_HEIGHT}
+                height={line3 ? 90 : line2 ? 74 : 58}
                 rx='8'
                 fill="#151f3a"
                 stroke="#ffd900"
@@ -100,9 +108,9 @@ function Tooltip({tooltip}) {
             <text x={tooltip.x + 10} y={tooltip.y + 18} fill="#ffd900" fontSize='11' fontWeight='bold'>
                 {tooltip.room.name}
             </text>
-            <text x={tooltip.x + 10} y={tooltip.y + 34} fill='#a5a5a5' fontSize='9'>
-                {tooltip.room.description}
-            </text>
+            <text x={tooltip.x + 10} y={tooltip.y + 34} fill='#a5a5a5' fontSize='9'>{line1}</text>
+            {line2 && <text x={tooltip.x + 10} y={tooltip.y + 46} fill='#a5a5a5' fontSize='9'>{line2}</text>}
+            {line3 && <text x={tooltip.x + 10} y={tooltip.y + 58} fill='#a5a5a5' fontSize='9'>{line3}</text>}
         </g>
     )
 }

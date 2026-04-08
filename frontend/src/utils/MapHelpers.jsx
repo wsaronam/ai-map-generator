@@ -26,8 +26,9 @@ export const CONNECTION_DASH = '6 3';
 
 
 // Tooltip
-export const TOOLTIP_WIDTH = 200;
+export const TOOLTIP_WIDTH = 220;
 export const TOOLTIP_HEIGHT = 350;
+export const TOOLTIP_WORDS_PER_LINE = 7;
 
 
 
