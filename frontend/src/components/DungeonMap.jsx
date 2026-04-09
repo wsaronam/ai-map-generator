@@ -8,8 +8,13 @@ import {
     CONNECTION_DASH,
     TOOLTIP_WIDTH,
     TOOLTIP_HEIGHT,
+    TOOLTIP_FLIP_X,
+    TOOLTIP_FLIP_Y,
+    TOOLTIP_OFFSET_X,
+    TOOLTIP_OFFSET_Y,
     TOOLTIP_WORDS_PER_LINE,
-    getRoomPositions
+    getRoomPositions,
+    
 } from '../utils/MapHelpers.jsx';
 import Legend from './Legend.jsx';
 
@@ -89,15 +94,15 @@ function Tooltip({tooltip}) {
     const line1 = words.slice(0, TOOLTIP_WORDS_PER_LINE).join(' ');
     const line2 = words.slice(TOOLTIP_WORDS_PER_LINE, TOOLTIP_WORDS_PER_LINE * 2).join(' ');
     const line3 = words.slice(TOOLTIP_WORDS_PER_LINE * 2).join(' ');
-    console.log(line1);
-    console.log(line2);
-    console.log(line3);
-
+    // tx and ty calculates if the tooltip will fall of the right side of the graph or the bottom of the graph
+    // it will move the tooltip left and/or up if it does fall off
+    const tx = tooltip.x > TOOLTIP_FLIP_X ? tooltip.x - TOOLTIP_WIDTH - 20 : tooltip.x + TOOLTIP_OFFSET_X;
+    const ty = tooltip.y > TOOLTIP_FLIP_Y ? tooltip.y - 100 : tooltip.y + TOOLTIP_OFFSET_Y;
 
     return (
         <g>
             <rect
-                x={tooltip.x} y={tooltip.y}
+                x={tx} y={ty}
                 width={TOOLTIP_WIDTH}
                 height={line3 ? 90 : line2 ? 74 : 58}
                 rx='8'
@@ -105,12 +110,12 @@ function Tooltip({tooltip}) {
                 stroke="#ffd900"
                 strokeWidth="1"
             />
-            <text x={tooltip.x + 10} y={tooltip.y + 18} fill="#ffd900" fontSize='11' fontWeight='bold'>
+            <text x={tx + 10} y={ty + 18} fill="#ffd900" fontSize='11' fontWeight='bold'>
                 {tooltip.room.name}
             </text>
-            <text x={tooltip.x + 10} y={tooltip.y + 34} fill='#a5a5a5' fontSize='9'>{line1}</text>
-            {line2 && <text x={tooltip.x + 10} y={tooltip.y + 46} fill='#a5a5a5' fontSize='9'>{line2}</text>}
-            {line3 && <text x={tooltip.x + 10} y={tooltip.y + 58} fill='#a5a5a5' fontSize='9'>{line3}</text>}
+            <text x={tx + 10} y={ty + 34} fill='#a5a5a5' fontSize='9'>{line1}</text>
+            {line2 && <text x={tx + 10} y={ty + 46} fill='#a5a5a5' fontSize='9'>{line2}</text>}
+            {line3 && <text x={tx + 10} y={ty + 58} fill='#a5a5a5' fontSize='9'>{line3}</text>}
         </g>
     )
 }
