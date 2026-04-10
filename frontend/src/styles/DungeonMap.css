@@ -1,0 +1,25 @@
+.container {
+    width: 100%;
+    max-width: 800px;
+}
+
+.title {
+    text-align: cetner;
+    color: #ffd700;
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+}
+
+.hint {
+    text-align: center;
+    color: #585858;
+    font-size: 0.8rem;
+    margin-bottom: 16px;
+}
+
+.svg {
+    background: #0e0e20;
+    border-radius: 12px;
+    border: 1px solid #313131;
+    display: block;
+}

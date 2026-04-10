@@ -1,0 +1,16 @@
+.box {
+    fill: #151f3a;
+    stroke: #ffd900;
+    stroke-width: 1;
+}
+
+.title {
+    fill: #ffd700;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.text {
+    fill: #a1a1a1;
+    font-size: 9px;
+}
