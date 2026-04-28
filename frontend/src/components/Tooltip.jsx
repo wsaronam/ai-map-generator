@@ -34,12 +34,12 @@ export default function Tooltip({tooltip}) {
                 strokeWidth="1"
                 className='box'
             />
-            <text x={tx + 10} y={ty + 18} fill="#ffd900" fontSize='11' fontWeight='bold' className='title'>
+            <text x={tx + 10} y={ty + 26} fill="#ffd900" fontSize='11' fontWeight='bold' className='title'>
                 {tooltip.room.name}
             </text>
-            <text x={tx + 10} y={ty + 34} fill='#a5a5a5' fontSize='9' className='text'>{line1}</text>
-            {line2 && <text x={tx + 10} y={ty + 46} fill='#a5a5a5' fontSize='9' className='text'>{line2}</text>}
-            {line3 && <text x={tx + 10} y={ty + 58} fill='#a5a5a5' fontSize='9' className='text'>{line3}</text>}
+            <text x={tx + 10} y={ty + 44} fill='#a5a5a5' fontSize='9' className='text'>{line1}</text>
+            {line2 && <text x={tx + 10} y={ty + 56} fill='#a5a5a5' fontSize='9' className='text'>{line2}</text>}
+            {line3 && <text x={tx + 10} y={ty + 68} fill='#a5a5a5' fontSize='9' className='text'>{line3}</text>}
         </g>
     )
 }

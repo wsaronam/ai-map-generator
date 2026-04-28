@@ -1,18 +1,6 @@
 import { 
-    ROOM_COLORS, 
-    ROOM_RADIUS,
     MAP_WIDTH,
     MAP_HEIGHT,
-    CONNECTION_STROKE,
-    CONNECTION_WIDTH,
-    CONNECTION_DASH,
-    TOOLTIP_WIDTH,
-    TOOLTIP_HEIGHT,
-    TOOLTIP_FLIP_X,
-    TOOLTIP_FLIP_Y,
-    TOOLTIP_OFFSET_X,
-    TOOLTIP_OFFSET_Y,
-    TOOLTIP_WORDS_PER_LINE,
     getRoomPositions,
     
 } from '../utils/MapHelpers.jsx';
