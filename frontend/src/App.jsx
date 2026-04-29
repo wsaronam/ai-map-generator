@@ -21,11 +21,11 @@ function App() {
   
 
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/ping')
-      .then(res => setStatus('good'))
-      .catch(() => setStatus('bad'))
-  }, []);
+  // useEffect(() => {
+  //   axios.get('http://localhost:5000/ping')
+  //     .then(res => setStatus('good'))
+  //     .catch(() => setStatus('bad'))
+  // }, []);
 
 
   async function generateMap() {
@@ -42,14 +42,12 @@ function App() {
     try {
       const res = await axios.post('http://localhost:5000/generate-map', {theme});
       const parsed = parseMap(res.data.map);
-      console.log('parsed: ' + JSON.stringify(parsed));
       if (!parsed) {
         throw new Error('Invalid map data');
       }
       setMapData(parsed);
     }
     catch (err) {
-      console.log("error caught: " + err.message)
       setError('Error generating map.  Please try again.');
     }
     finally {

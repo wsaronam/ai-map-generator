@@ -12,14 +12,6 @@ body {
     justify-content: center;
 }
 
-#root {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-}
-
 .app {
     min-height: 100vh;
     display: flex;
