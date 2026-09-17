@@ -40,7 +40,7 @@ function App() {
     setTooltip(null);
 
     try {
-      const res = await axios.post('http://localhost:5000/generate-map', {theme});
+      const res = await axios.post('https://ai-map-generator-9ppd.onrender.com/generate-map', {theme});
       const parsed = parseMap(res.data.map);
       if (!parsed) {
         throw new Error('Invalid map data');
